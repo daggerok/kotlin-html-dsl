@@ -1,4 +1,4 @@
-= kotlin-html-dsl
+= kotlin-html-dsl image:https://travis-ci.org/daggerok/kotlin-html-dsl.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/kotlin-html-dsl"]
 
 //tag::content[]
 Simple and small Kotlin HTML DSL library.
