@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<settings xsi:schemaLocation='http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd'
+          xmlns='http://maven.apache.org/SETTINGS/1.0.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+
+  <!-- NOTE: use gradle to publish kotlin-html-dsl -->
+
+  <servers>
+    <server>
+      <id>bintray-daggerok-daggerok</id>
+      <username>daggerok</username>
+      <password>**********</password>
+    </server>
+  </servers>
+
+  <!-- pom.xml (user /non-jcenter repo): -->
+  <!--
+  <distributionManagement>
+    <repository>
+      <id>bintray-daggerok</id>
+      <name>daggerok-daggerok</name>
+      <url>https://api.bintray.com/maven/daggerok/daggerok/kotlin-html-dsl/;publish=1</url>
+    </repository>
+  </distributionManagement>
+  -->
+
+  <profiles>
+    <profile>
+      <repositories>
+        <repository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>bintray-daggerok-daggerok</id>
+          <name>bintray</name>
+          <url>https://dl.bintray.com/daggerok/daggerok</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>bintray-daggerok-daggerok</id>
+          <name>bintray-plugins</name>
+          <url>https://dl.bintray.com/daggerok/daggerok</url>
+        </pluginRepository>
+      </pluginRepositories>
+      <id>bintray</id>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <activeProfile>bintray</activeProfile>
+  </activeProfiles>
+</settings>

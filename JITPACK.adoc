@@ -1,0 +1,67 @@
+= jitpack
+
+//tag::content[]
+=== create github release
+
+.resolving dependencies with gradle (build.gradle):
+[source,groovy]
+----
+// JitPack 1:
+allprojects {
+  repositories {
+    maven { url "https://jitpack.io" }
+  }
+}
+
+dependencies {
+  // JitPack 2:
+  compile "com.github.daggerok:kotlin-html-dsl:0.1.PLUS"
+}
+----
+
+.resolving dependencies with maven (pom.xml):
+[source,xml]
+----
+<!-- JitPack 1: -->
+<repositories>
+  <repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+  </repository>
+</repositories>
+
+<dependencies>
+  <!-- JitPack 2: -->
+  <dependency>
+    <groupId>com.github.daggerok</groupId>
+    <artifactId>kotlin-html-dsl</artifactId>
+    <version>0.1.PLUS</version>
+  </dependency>
+</dependencies>
+----
+
+=== force rebuild jitpack
+
+* update using gradle:
+[source,groovy]
+----
+// build ${branchName} version:
+compile "com.github.daggerok:kotlin-html-dsl:${branchName}-SNAPSHOT"
+
+// build master version:
+compile "com.github.daggerok:kotlin-html-dsl:master-SNAPSHOT"
+
+// build latest version:
+compile "com.github.daggerok:kotlin-html-dsl:-SNAPSHOT"
+----
+
+* run build with refresh dependencies flag
+[source,bash]
+----
+./gradlew --refresh-dependencies
+----
+
+links:
+
+* link:https://jitpack.io/#daggerok/kotlin-html-dsl
+//end::content[]

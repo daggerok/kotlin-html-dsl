@@ -1,0 +1,180 @@
+buildscript {
+  ext {
+    javaVersion = "1.8"
+    kotlinVersion = "1.2.31"
+    // publication
+    vcsUrl = "https://github.com/daggerok/kotlin-html-dsl.git"
+  }
+}
+
+plugins {
+  id "idea"
+  id "java"
+  id "maven"
+  id "eclipse"
+  id "maven-publish"
+  id "com.jfrog.bintray" version "1.8.0"
+  id "org.jetbrains.kotlin.jvm" version "1.2.31"
+  id "org.jetbrains.kotlin.plugin.noarg" version "1.2.31"
+  id "org.jetbrains.kotlin.plugin.allopen" version "1.2.31"
+}
+
+/* apply plugin: "base" */
+
+description = "Kotlin HTML DSL - small kotlin extension library."
+group = "com.github.daggerok"
+version = "0.1.PLUS"
+sourceCompatibility = targetCompatibility = "$javaVersion"
+
+defaultTasks "clean", "build", "install", "publishToMavenLocal", "publish"
+
+allprojects {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }
+}
+
+/* apply plugin: "java" */
+
+compileJava {
+  options.compilerArgs += ["-Xlint:unchecked"]
+}
+
+/* apply plugin: "kotlin" */
+
+compileKotlin {
+  incremental = true
+  kotlinOptions {
+    freeCompilerArgs = ["-Xjsr305=strict"]
+    jvmTarget = "$javaVersion"
+  }
+}
+
+compileTestKotlin {
+  incremental = true
+  kotlinOptions {
+    freeCompilerArgs = ["-Xjsr305=strict"]
+    jvmTarget = "$javaVersion"
+  }
+}
+
+dependencies {
+  compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
+  compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+  testCompile("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
+  //compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.5")
+  testCompile("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = "4.6"
+  distributionType = "ALL"
+}
+
+/* apply plugin: "idea" */
+
+idea {
+  module {
+    downloadSources = true
+  }
+}
+
+/* apply plugin: "eclipse" */
+
+eclipse {
+  classpath {
+    downloadSources = true
+  }
+}
+
+/* apply plugin: "maven-publish" */
+
+task classifierJar(type: Jar) {
+  from sourceSets.main.output
+}
+
+task sourceJar(type: Jar) {
+  from sourceSets.main.allJava
+}
+
+task classifierSourceJar(type: Jar) {
+  from sourceSets.main.allJava
+}
+
+def pomConfig = {
+  scm {
+    url "$project.vcsUrl"
+  }
+  developers {
+    developer {
+      id "daggerok"
+      name "Maksim Kostromin"
+      email "daggerok@gmail.com"
+    }
+  }
+  licenses {
+    license {
+      name "MIT License"
+      url "https://raw.githubusercontent.com/daggerok/kotlin-html-dsl/master/LICENSE"
+      distribution "repo"
+    }
+  }
+}
+
+publishing {
+  publications {
+    publication(MavenPublication) {
+      from components.java
+      artifact classifierJar { classifier = "1.5" }
+      artifact sourceJar { classifier = "sources" }
+      artifact classifierSourceJar { classifier = "1.5-sources" }
+      pom.withXml {
+        def root = asNode()
+        root.appendNode("description", project.description)
+        root.appendNode("name", project.name)
+        root.appendNode("url", project.vcsUrl)
+        root.children().last() + pomConfig
+      }
+    }
+  }
+  repositories {
+    maven {
+      url "$buildDir/maven-publish"
+    }
+  }
+}
+
+bintray {
+  user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+  key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+  publications = ["publication"]
+  pkg {
+    userOrg = user
+    repo = "daggerok"
+    name = "$project.name"
+    licenses = ["MIT"]
+    vcsUrl = project.vcsUrl
+    labels = [
+        "Dependency Injection",
+        "Inversion of Control",
+        "Context Dependency Injection",
+        "dependency-injection",
+        "inversion-of-control",
+        "context-dependency-injection",
+        "daggerok-context",
+        "context",
+        "CDI",
+        "cdi",
+        "IoC",
+        "ioc",
+    ]
+    publicDownloadNumbers = true
+  }
+}
+
+clean.doFirst {
+  ["out"].each {
+    delete "$projectDir/$it"
+  }
+}

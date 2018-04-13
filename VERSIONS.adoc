@@ -1,0 +1,13 @@
+= versions
+
+see link:./BINTRAY.adoc[bintray] and link:./JITPACK.adoc[jitpack] READMEs to pickup right version from repository you need...
+
+|===
+|bintray jcenter/daggerok|jitpack
+
+|0.1.PLUS
+|0.1.PLUS
+
+//|1.0.PLUS
+//|1.0.PLUS
+|===
