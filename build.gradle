@@ -61,10 +61,10 @@ compileTestKotlin {
 
 dependencies {
   compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
-  compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
-  testCompile("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
+  //compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+  //testCompile("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
   //compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.5")
-  testCompile("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
+  //testCompile("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
 }
 
 task wrapper(type: Wrapper) {
@@ -156,18 +156,16 @@ bintray {
     licenses = ["MIT"]
     vcsUrl = project.vcsUrl
     labels = [
-        "Dependency Injection",
-        "Inversion of Control",
-        "Context Dependency Injection",
-        "dependency-injection",
-        "inversion-of-control",
-        "context-dependency-injection",
-        "daggerok-context",
-        "context",
-        "CDI",
-        "cdi",
-        "IoC",
-        "ioc",
+        "Kotlin HTML DSL",
+        "kotlin-html-dsl",
+        "Kotlin to HTML",
+        "kotlin-to-html",
+        "Convert Kotlin to HTML",
+        "convert-kotlin-to-html",
+        "Kotlin extensions",
+        "Kotlin extension",
+        "domain-specific-language",
+        "Domain Specific Language",
     ]
     publicDownloadNumbers = true
   }
