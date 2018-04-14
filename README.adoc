@@ -1,8 +1,15 @@
 = kotlin-html-dsl image:https://travis-ci.org/daggerok/kotlin-html-dsl.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/kotlin-html-dsl"]
 
 //tag::content[]
+image:https://travis-ci.org/daggerok/kotlin-html-dsl.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/kotlin-html-dsl"]
+image:https://api.bintray.com/packages/daggerok/daggerok/kotlin-html-dsl/images/download.svg[link="https://bintray.com/bintray/jcenter?filterByPkgName=kotlin-html-dsl"]
+image:https://jitpack.io/v/daggerok/kotlin-html-dsl.svg["JitPack", link="https://jitpack.io/#daggerok/kotlin-html-dsl"]
+
+== description
 Simple and small Kotlin HTML DSL library.
 Could be used to build server-side MVC apps
+
+image:https://www.bintray.com/docs/images/bintray_badge_color.png["kotlin-html-dsl", link="https://bintray.com/daggerok/daggerok/kotlin-html-dsl?source=watch"]
 
 .build
 ----
