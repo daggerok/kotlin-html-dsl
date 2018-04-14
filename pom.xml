@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.github.daggerok</groupId>
-  <version>0.1.PLUS</version>
+  <version>0.2.PLUS</version>
   <artifactId>kotlin-html-dsl</artifactId>
   <packaging>jar</packaging>
 

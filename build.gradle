@@ -23,7 +23,7 @@ plugins {
 
 description = "Kotlin HTML DSL - small kotlin extension library."
 group = "com.github.daggerok"
-version = "0.1.PLUS"
+version = "0.2.PLUS"
 sourceCompatibility = targetCompatibility = "$javaVersion"
 
 defaultTasks "clean", "build", "install", "publishToMavenLocal", "publish"
@@ -126,9 +126,9 @@ publishing {
   publications {
     publication(MavenPublication) {
       from components.java
-      artifact classifierJar { classifier = "1.5" }
+      artifact classifierJar { classifier = "1.8" }
       artifact sourceJar { classifier = "sources" }
-      artifact classifierSourceJar { classifier = "1.5-sources" }
+      artifact classifierSourceJar { classifier = "1.8-sources" }
       pom.withXml {
         def root = asNode()
         root.appendNode("description", project.description)

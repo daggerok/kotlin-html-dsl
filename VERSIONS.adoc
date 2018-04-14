@@ -5,8 +5,8 @@ see link:./BINTRAY.adoc[bintray] and link:./JITPACK.adoc[jitpack] READMEs to pic
 |===
 |bintray jcenter/daggerok|jitpack
 
-|0.1.PLUS
-|0.1.PLUS
+|0.2.PLUS
+|0.2.PLUS
 
 //|1.0.PLUS
 //|1.0.PLUS
