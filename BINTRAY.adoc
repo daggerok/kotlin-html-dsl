@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-  compile "com.github.daggerok:kotlin-html-dsl:0.2.PLUS"
+  compile "com.github.daggerok:kotlin-html-dsl:0.3.ALL"
 }
 ----
 
@@ -31,7 +31,7 @@ dependencies {
   <dependency>
     <groupId>com.github.daggerok</groupId>
     <artifactId>kotlin-html-dsl</artifactId>
-    <version>0.2.PLUS</version>
+    <version>0.3.ALL</version>
   </dependency>
 </dependencies>
 ----
@@ -45,7 +45,7 @@ repositories {
 }
 
 dependencies {
-  compile "com.github.daggerok:kotlin-html-dsl:0.2.PLUS"
+  compile "com.github.daggerok:kotlin-html-dsl:0.3.ALL"
 }
 ----
 
@@ -64,7 +64,7 @@ dependencies {
   <dependency>
     <groupId>com.github.daggerok</groupId>
     <artifactId>kotlin-html-dsl</artifactId>
-    <version>0.2.PLUS</version>
+    <version>0.3.ALL</version>
   </dependency>
 </dependencies>
 ----
@@ -109,7 +109,7 @@ dependencies {
 <dependency>
   <groupId>com.github.daggerok</groupId>
   <artifactId>kotlin-html-dsl</artifactId>
-  <version>0.2.PLUS</version>
+  <version>0.3.ALL</version>
 </dependency>
 ----
 

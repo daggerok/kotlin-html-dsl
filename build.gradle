@@ -23,7 +23,7 @@ plugins {
 
 description = "Kotlin HTML DSL: The smallest kotlin extension library you have ever seen!"
 group = "com.github.daggerok"
-version = "0.2.PLUS"
+version = "0.3.ALL"
 sourceCompatibility = targetCompatibility = "$javaVersion"
 
 defaultTasks "clean", "build", "install", "publishToMavenLocal", "publish"
@@ -60,11 +60,11 @@ compileTestKotlin {
 }
 
 dependencies {
-  compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
-  //compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
-  //testCompile("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
+  //compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
+  compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+  testCompile("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
   //compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.5")
-  //testCompile("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
+  testCompile("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
 }
 
 task wrapper(type: Wrapper) {
