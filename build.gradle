@@ -21,7 +21,7 @@ plugins {
 
 /* apply plugin: "base" */
 
-description = "Kotlin HTML DSL - small kotlin extension library."
+description = "Kotlin HTML DSL: The smallest kotlin extension library you have ever seen!"
 group = "com.github.daggerok"
 version = "0.2.PLUS"
 sourceCompatibility = targetCompatibility = "$javaVersion"
