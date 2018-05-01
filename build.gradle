@@ -1,7 +1,7 @@
 buildscript {
   ext {
     javaVersion = "1.8"
-    kotlinVersion = "1.2.31"
+    kotlinVersion = "1.2.41"
     // publication
     vcsUrl = "https://github.com/daggerok/kotlin-html-dsl.git"
   }
@@ -14,9 +14,9 @@ plugins {
   id "eclipse"
   id "maven-publish"
   id "com.jfrog.bintray" version "1.8.0"
-  id "org.jetbrains.kotlin.jvm" version "1.2.31"
-  id "org.jetbrains.kotlin.plugin.noarg" version "1.2.31"
-  id "org.jetbrains.kotlin.plugin.allopen" version "1.2.31"
+  id "org.jetbrains.kotlin.jvm" version "1.2.41"
+  id "org.jetbrains.kotlin.plugin.noarg" version "1.2.41"
+  id "org.jetbrains.kotlin.plugin.allopen" version "1.2.41"
 }
 
 /* apply plugin: "base" */
@@ -68,7 +68,7 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = "4.6"
+  gradleVersion = "4.7"
   distributionType = "ALL"
 }
 
