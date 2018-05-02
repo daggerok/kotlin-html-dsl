@@ -34,9 +34,9 @@ gpg2 --keyserver hkp://pool.sks-keyservers.net --send-keys A5252B5B
 # output: gpg: sending key A5252B5B to hkp server pool.sks-keyservers.net
 ----
 
-== gradle
+== configure gradle
 
-.edit ./gradle.properties
+.1) edit ./gradle.properties
 [source,properties]
 ----
 ossrhUsername=daggerok
@@ -48,7 +48,7 @@ signing.password=...
 signing.secretKeyRingFile=/Users/mak/.gnupg/secring.gpg
 ----
 
-.edit ./build.gradle
+.2) edit ./build.gradle
 [source,gradle]
 ----
 plugins {
@@ -123,10 +123,19 @@ uploadArchives {
 }
 ----
 
-.publish to maven central
+.3) publish to maven central staging
 [source,bash]
 ----
-gradle uploadArchives
+./gradlew -iS uploadArchives
 ----
+
+.4) publish 'maven central release
+- go to sonatype https://oss.sonatype.org
+- login as daggerok
+- clikc on Staging Repositories
+- Search for comgithubdaggerok-... repository and select it
+- On panel upper find button `Close` and click on it to trigger link:http://central.sonatype.org/pages/requirements.html[evaluations of the components against the requirements]
+- Wait until closing operation will successfully finished and `Release` button became clickable
+- Click on Release button
 
 == maven (TODO: failed on gpg...)
