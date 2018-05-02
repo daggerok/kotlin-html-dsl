@@ -15,7 +15,7 @@ allprojects {
 
 dependencies {
   // JitPack 2:
-  compile "com.github.daggerok:kotlin-html-dsl:0.3.ALL"
+  compile "com.github.daggerok:kotlin-html-dsl:1.0.ALL"
 }
 ----
 
@@ -35,7 +35,7 @@ dependencies {
   <dependency>
     <groupId>com.github.daggerok</groupId>
     <artifactId>kotlin-html-dsl</artifactId>
-    <version>0.3.ALL</version>
+    <version>1.0.ALL</version>
   </dependency>
 </dependencies>
 ----

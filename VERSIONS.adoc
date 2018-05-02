@@ -3,17 +3,21 @@
 see link:./BINTRAY.adoc[bintray] and link:./JITPACK.adoc[jitpack] READMEs to pickup right version from repository you need...
 
 |===
-|bintray jcenter/daggerok|jitpack
+|bintray jcenter/daggerok|jitpack|maven central
 
 |0.1.PLUS
+|-
 |-
 
 |0.2.PLUS
 |-
+|-
 
 |0.3.ALL
 |0.3.ALL
+|-
 
-//|1.0.ALL
-//|1.0.ALL
+|1.0.ALL
+|1.0.ALL
+|1.0.ALL
 |===

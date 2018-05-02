@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-  compile "com.github.daggerok:kotlin-html-dsl:0.3.ALL"
+  compile "com.github.daggerok:kotlin-html-dsl:1.0.ALL"
 }
 ----
 
@@ -48,7 +48,7 @@ dependencies {
   <dependency>
     <groupId>com.github.daggerok</groupId>
     <artifactId>kotlin-html-dsl</artifactId>
-    <version>0.3.ALL</version>
+    <version>1.0.ALL</version>
   </dependency>
 </dependencies>
 ----
@@ -57,7 +57,7 @@ dependencies {
 
 === text function
 
-.1) Stateful DOM API usage (text function usage):
+.1) Stateful DOM API usage (text function usage) -- add text content to innerHTML by using `test` function:
 [source,kotlin]
 ----
 fun main(args: Array<String>) {
@@ -81,7 +81,7 @@ fun main(args: Array<String>) {
 
 === innerHTML property
 
-.2) Stateful DOM API usage (innerHTML):
+.2) Stateful DOM API usage (innerHTML) -- using innerHTML directly:
 [source,kotlin]
 ----
 fun main(args: Array<String>) {
@@ -105,7 +105,7 @@ fun main(args: Array<String>) {
 
 === plus API
 
-.3) Stateles PLUS API usage:
+.3) Stateles PLUS API usage -- two or more siblings in the same parent could be concatinated by plus `+` operator:
 [source,kotlin]
 ----
 fun main(args: Array<String>) {
@@ -293,7 +293,7 @@ repositories {
 }
 
 dependencies {
-  compile "com.github.daggerok:kotlin-html-dsl:0.3.ALL"
+  compile "com.github.daggerok:kotlin-html-dsl:1.0.ALL"
 }
 ----
 
@@ -313,7 +313,7 @@ dependencies {
   <dependency>
     <groupId>com.github.daggerok</groupId>
     <artifactId>kotlin-html-dsl</artifactId>
-    <version>0.3.ALL</version>
+    <version>1.0.ALL</version>
   </dependency>
 </dependencies>
 ----
@@ -330,7 +330,7 @@ repositories {
 }
 
 dependencies {
-  compile "com.github.daggerok:kotlin-html-dsl:0.3.ALL"
+  compile "com.github.daggerok:kotlin-html-dsl:1.0.ALL"
 }
 ----
 
@@ -350,7 +350,7 @@ dependencies {
   <dependency>
     <groupId>com.github.daggerok</groupId>
     <artifactId>kotlin-html-dsl</artifactId>
-    <version>0.3.ALL</version>
+    <version>1.0.ALL</version>
   </dependency>
 </dependencies>
 ----
