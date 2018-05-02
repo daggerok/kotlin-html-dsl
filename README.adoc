@@ -16,7 +16,7 @@ Simplest and small Kotlin HTML DSL library ever. Supports HTML5 standard (and so
 
 == installation
 
-there are 3 artifact versions are available:
+3 artifact versions are available:
 
 - `1.0.PLUS` - Stateless PLUS API: Operator `+` allow concat two or more siblings in same parent
 - `1.0.DOM` - Stateful DOM API: function `text` and property `innerHTML`
@@ -64,7 +64,7 @@ image:http://maven.apache.org/images/maven-logo-black-on-white.png["kotlin-html-
 
 === text function
 
-.1) Stateful DOM API usage (text function usage) -- add text content to innerHTML by using `test` function:
+.1) Stateful DOM API usage (text function usage) -- add text content to innerHTML by using `text` function:
 [source,kotlin]
 ----
 import daggerok.extensions.html.dom.*
