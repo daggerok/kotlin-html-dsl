@@ -38,7 +38,7 @@ dependencies {
 }
 ----
 
-image:http://maven.apache.org/images/maven-logo-black-on-white.png["kotlin-html-dsl", link="https://maven-badges.herokuapp.com/maven-central/com.github.daggerok/kotlin-html-dsl"]
+image:http://maven.apache.org/images/maven-logo-black-on-white.png["kotlin-html-dsl", link="https://search.maven.org/beta/artifact/com.github.daggerok/kotlin-html-dsl/1.0.ALL/jar"]
 
 .pom.xml
 [source,xml]
