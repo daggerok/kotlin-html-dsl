@@ -24,7 +24,7 @@ plugins {
 
 description = "Kotlin HTML DSL: The smallest kotlin extension library you have ever seen!"
 group = "com.github.daggerok"
-version = "1.0.ALL"
+version = "1.0.DOM"
 sourceCompatibility = targetCompatibility = "$javaVersion"
 
 defaultTasks "clean", "build", "install", "publishToMavenLocal", "publish"
@@ -200,7 +200,7 @@ artifacts {
 
 // avoid jitpack build fail
 // uncomment to publish build to maven central using command: `gradle uploadArchives`
-/*
+///*
 
 signing {
   sign configurations.archives
@@ -247,4 +247,4 @@ uploadArchives {
     }
   }
 }
-*/
+//*/
