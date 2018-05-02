@@ -28,9 +28,9 @@ image:https://www.bintray.com/docs/images/bintray_badge_color.png["kotlin-html-d
 [source,gradle]
 ----
 repositories {
-  jcenter() // published to bintray
+  jcenter()      // available in bintray jcenter
   // or:
-  mavenCentral() // also published to maven central
+  mavenCentral() // also available in maven central
 }
 
 dependencies {
