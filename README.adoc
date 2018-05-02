@@ -18,7 +18,7 @@ Simplest and small Kotlin HTML DSL library ever. Supports HTML5 standard (and so
 
 3 artifact versions are available:
 
-- `1.0.PLUS` - Stateless PLUS API: Operator `+` allow concat two or more siblings in same parent
+- `1.0.PLUS` - Stateless PLUS API: operator `+` allow concat two or more siblings in same parent
 - `1.0.DOM` - Stateful DOM API: function `text` and property `innerHTML`
 - `1.0.ALL` - Both APIs
 
