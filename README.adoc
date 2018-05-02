@@ -23,6 +23,8 @@ image:https://www.bintray.com/docs/images/bintray_badge_color.png["kotlin-html-d
 ----
 repositories {
   jcenter() // published to bintray
+  // or:
+  mavenCentral() // also published to maven central
 }
 
 dependencies {
@@ -35,13 +37,6 @@ image:http://maven.apache.org/images/maven-logo-black-on-white.png["kotlin-html-
 .pom.xml
 [source,xml]
 ----
-<repositories>
-  <repository>
-    <id>jcentral</id>
-    <url>https://jcenter.bintray.com</url>
-  </repository>
-</repositories>
-
 <dependencies>
   <dependency>
     <groupId>com.github.daggerok</groupId>
@@ -49,6 +44,14 @@ image:http://maven.apache.org/images/maven-logo-black-on-white.png["kotlin-html-
     <version>1.0.ALL</version>
   </dependency>
 </dependencies>
+
+<!-- only if you want use bintray jcetner -->
+<repositories>
+  <repository>
+    <id>jcentral</id>
+    <url>https://jcenter.bintray.com</url>
+  </repository>
+</repositories>
 ----
 
 == usage
