@@ -15,6 +15,7 @@ toc::[]
 Simplest and small Kotlin HTML DSL library ever. Supports HTML5 standard (and some obsolete HTML4 tags according to link:https://www.quackit.com/html/tags/[that] page)
 
 image:https://www.bintray.com/docs/images/bintray_badge_color.png["kotlin-html-dsl", link="https://bintray.com/daggerok/daggerok/kotlin-html-dsl?source=watch"]
+image:http://maven.apache.org/images/maven-logo-black-on-white.png["kotlin-html-dsl", link="https://maven-badges.herokuapp.com/maven-central/com.github.daggerok/kotlin-html-dsl"]
 
 == installation
 
