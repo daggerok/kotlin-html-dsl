@@ -1,19 +1,290 @@
 = kotlin-html-dsl image:https://travis-ci.org/daggerok/kotlin-html-dsl.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/kotlin-html-dsl"]
+:toc:
+:toc-placement!:
 
 //tag::content[]
 image:https://travis-ci.org/daggerok/kotlin-html-dsl.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/kotlin-html-dsl"]
 image:https://api.bintray.com/packages/daggerok/daggerok/kotlin-html-dsl/images/download.svg[link="https://bintray.com/bintray/jcenter?filterByPkgName=kotlin-html-dsl"]
 image:https://jitpack.io/v/daggerok/kotlin-html-dsl.svg["JitPack", link="https://jitpack.io/#daggerok/kotlin-html-dsl"]
 
+toc::[]
+
 == description
-Simple and small Kotlin HTML DSL library.
-Could be used to build server-side MVC apps
+
+Simplest and small Kotlin HTML DSL library ever. Supports HTML5 standard (and some obsolete HTML4 tags according to link:https://www.quackit.com/html/tags/[that] page)
 
 image:https://www.bintray.com/docs/images/bintray_badge_color.png["kotlin-html-dsl", link="https://bintray.com/daggerok/daggerok/kotlin-html-dsl?source=watch"]
 
+== installation
+
+=== gradle
+
+.build.gradle
+[source,gradle]
+----
+repositories {
+  jcenter() // published to bintray
+}
+
+dependencies {
+  compile "com.github.daggerok:kotlin-html-dsl:0.3.ALL"
+}
+----
+
+=== maven
+
+.pom.xml
+[source,xml]
+----
+<repositories>
+  <repository>
+    <id>jcentral</id>
+    <url>https://jcenter.bintray.com</url>
+  </repository>
+</repositories>
+
+<dependencies>
+  <dependency>
+    <groupId>com.github.daggerok</groupId>
+    <artifactId>kotlin-html-dsl</artifactId>
+    <version>0.3.ALL</version>
+  </dependency>
+</dependencies>
+----
+
+== usage
+
+=== text function
+
+.1) Stateful DOM API usage (text function usage):
+[source,kotlin]
+----
+fun main(args: Array<String>) {
+  println(
+    html("lang" to "en") {
+      head {
+        meta("charset" to "UTF-8")
+        title {
+          text("Kotlin HTML DSL")
+        }
+      }
+      body {
+        h1 {
+          text("Hello, World!")
+        }
+      }
+    }
+  )
+}
+----
+
+=== innerHTML property
+
+.2) Stateful DOM API usage (innerHTML):
+[source,kotlin]
+----
+fun main(args: Array<String>) {
+  println(
+    html("lang" to "en") {
+      head {
+        meta("charset" to "UTF-8")
+        title {
+          innerHTML += "Kotlin HTML DSL"
+        }
+      }
+      body {
+        h1 {
+          innerHTML += "Hello, World!"
+        }
+      }
+    }
+  )
+}
+----
+
+=== plus API
+
+.3) Stateles PLUS API usage:
+[source,kotlin]
+----
+fun main(args: Array<String>) {
+  println(
+    html("lang" to "en") {
+      head {
+        meta("charset" to "UTF-8")+
+        title {
+          "Kotlin HTML DSL"
+        }
+      }+
+      body {
+        h1 {
+          "Hello, World!"
+        }
+      }
+    }
+  )
+}
+----
+
+.all 3 examples will produce same HTML:
+[source,html]
+----
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'/>
+  <title>Kotlin HTML DSL</title>
+</head>
+<body>
+  <h1>Hello, World!</h1>
+</body>
+</html>
+----
+
+== tags support
+
+=== **HTML5 tags**
+
+_The following tags are supported in HTML5 (and/or the WHATWG HTML Living Standard):_
+
+a
+abbr
+address
+area
+article
+aside
+audio
+b
+base
+bdi
+bdo
+blockquote
+body
+br
+button
+canvas
+caption
+cite
+code
+col
+colgroup
+data
+datalist
+dd
+del
+details
+dfn
+dialog
+div
+dl
+dt
+em
+embed
+fieldset
+figcaption
+figure
+footer
+form
+h1
+h2
+h3
+h4
+h5
+h6
+head
+header
+hgroup
+hr
+html
+i
+iframe
+img
+input
+ins
+kbd
+keygen
+label
+legend
+li
+link
+main
+map
+mark
+menu
+menuitem
+meta
+meter
+nav
+noscript
+object
+ol
+optgroup
+option
+output
+p
+param
+pre
+progress
+q
+rb
+rp
+rt
+rtc
+ruby
+s
+samp
+script
+section
+select
+small
+source
+span
+strong
+style
+sub
+summary
+sup
+table
+tbody
+td
+template
+textarea
+tfoot
+th
+thead
+time
+title
+tr
+track
+u
+ul
+var
+video
+wbr
+
+=== **HTML4 / obsolete tags**
+
+_The following tags are supported in HTML 4 but not HTML5.
+Therefore you should not use these if you need to be HTML5 compliant:_
+
+acronym
+applet
+basefont
+big
+center
+dir
+font
+frame
+frameset
+isindex
+
 == other installation variants
-=== gradle bintray.daggerok
-.gradle setup (build.gradle)
+
+=== bintray user repository
+
+==== gradle
+
+.build.gradle
 [source,gradle]
 ----
 repositories {
@@ -21,23 +292,13 @@ repositories {
 }
 
 dependencies {
-  compile "com.github.daggerok:kotlin-html-dsl:0.2.PLUS"
+  compile "com.github.daggerok:kotlin-html-dsl:0.3.ALL"
 }
 ----
-=== gradle jitpack
-.gradle setup (build.gradle)
-[source,gradle]
-----
-repositories {
-  maven { url "https://jitpack.io" }
-}
 
-dependencies {
-  compile "com.github.daggerok:kotlin-html-dsl:0.2.PLUS"
-}
-----
-=== maven bintray/daggerok
-.maven setup (pom.xml)
+==== maven
+
+.pom.xml
 [source,xml]
 ----
 <repositories>
@@ -51,12 +312,30 @@ dependencies {
   <dependency>
     <groupId>com.github.daggerok</groupId>
     <artifactId>kotlin-html-dsl</artifactId>
-    <version>0.2.PLUS</version>
+    <version>0.3.ALL</version>
   </dependency>
 </dependencies>
 ----
-=== maven jitpack
-.maven setup (pom.xml)
+
+=== jitpack repository
+
+==== gradle
+
+.build.gradle
+[source,gradle]
+----
+repositories {
+  maven { url "https://jitpack.io" }
+}
+
+dependencies {
+  compile "com.github.daggerok:kotlin-html-dsl:0.3.ALL"
+}
+----
+
+==== maven
+
+.pom.xml
 [source,xml]
 ----
 <repositories>
@@ -70,16 +349,18 @@ dependencies {
   <dependency>
     <groupId>com.github.daggerok</groupId>
     <artifactId>kotlin-html-dsl</artifactId>
-    <version>0.2.PLUS</version>
+    <version>0.3.ALL</version>
   </dependency>
 </dependencies>
 ----
 
 == TODO
+
 * add examples projects
 * publish to mavenCentral (TODO)
 
 == contribution
+
 Feel free extend and contribute to add more functionality.
 Personally I'd like to keep it simple as possible, but my Kotlin knowledge not yet good enough.
 So if you can improve it or make it more DSL-ish -- please, create PR
