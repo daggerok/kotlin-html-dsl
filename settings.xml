@@ -5,6 +5,13 @@
   <!-- NOTE: use gradle to publish kotlin-html-dsl -->
 
   <servers>
+    <!-- maven central -->
+    <server>
+      <id>ossrh</id>
+      <username>daggerok</username>
+      <password>**********</password>
+    </server>
+    <!-- bintray -->
     <server>
       <id>bintray-daggerok-daggerok</id>
       <username>daggerok</username>
@@ -12,19 +19,32 @@
     </server>
   </servers>
 
-  <!-- pom.xml (user /non-jcenter repo): -->
+  <!-- pom.xml: -->
   <!--
   <distributionManagement>
     <repository>
       <id>bintray-daggerok</id>
       <name>daggerok-daggerok</name>
-      <url>https://api.bintray.com/maven/daggerok/daggerok/kotlin-html-dsl/;publish=1</url>
+      <url>https://api.bintray.com/maven/daggerok/daggerok/daggerok-context/;publish=1</url>
     </repository>
   </distributionManagement>
   -->
 
   <profiles>
+    <!-- maven central -->
     <profile>
+      <id>ossrh</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <gpg.executable>gpg2</gpg.executable> <!-- brew install gnupg@2.0 -->
+        <gpg.passphrase>**********</gpg.passphrase>
+      </properties>
+    </profile>
+    <!-- bintray -->
+    <profile>
+      <id>bintray</id>
       <repositories>
         <repository>
           <snapshots>
@@ -45,7 +65,6 @@
           <url>https://dl.bintray.com/daggerok/daggerok</url>
         </pluginRepository>
       </pluginRepositories>
-      <id>bintray</id>
     </profile>
   </profiles>
   <activeProfiles>

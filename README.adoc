@@ -1,4 +1,4 @@
-= kotlin-html-dsl image:https://travis-ci.org/daggerok/kotlin-html-dsl.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/kotlin-html-dsl"]
+= kotlin-html-dsl
 :toc:
 :toc-placement!:
 
@@ -6,6 +6,7 @@
 image:https://travis-ci.org/daggerok/kotlin-html-dsl.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/kotlin-html-dsl"]
 image:https://api.bintray.com/packages/daggerok/daggerok/kotlin-html-dsl/images/download.svg[link="https://bintray.com/bintray/jcenter?filterByPkgName=kotlin-html-dsl"]
 image:https://jitpack.io/v/daggerok/kotlin-html-dsl.svg["JitPack", link="https://jitpack.io/#daggerok/kotlin-html-dsl"]
+image:https://maven-badges.herokuapp.com/maven-central/com.github.daggerok/kotlin-html-dsl/badge.svg?style=plastic["Maven Central", link="https://maven-badges.herokuapp.com/maven-central/com.github.daggerok/kotlin-html-dsl"]
 
 toc::[]
 
@@ -356,8 +357,7 @@ dependencies {
 
 == TODO
 
-* add examples projects
-* publish to mavenCentral (TODO)
+* publish to mavenCentral
 
 == contribution
 

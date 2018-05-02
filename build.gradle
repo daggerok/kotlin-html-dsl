@@ -11,6 +11,7 @@ plugins {
   id "idea"
   id "java"
   id "maven"
+  id "signing"
   id "eclipse"
   id "maven-publish"
   id "com.jfrog.bintray" version "1.8.0"
@@ -23,7 +24,7 @@ plugins {
 
 description = "Kotlin HTML DSL: The smallest kotlin extension library you have ever seen!"
 group = "com.github.daggerok"
-version = "0.3.ALL"
+version = "1.0.ALL"
 sourceCompatibility = targetCompatibility = "$javaVersion"
 
 defaultTasks "clean", "build", "install", "publishToMavenLocal", "publish"
@@ -90,6 +91,13 @@ eclipse {
 
 /* apply plugin: "maven-publish" */
 
+task javadocJar(type: Jar) {
+  classifier = "javadoc"
+  from javadoc
+}
+
+javadoc.failOnError = false
+
 task classifierJar(type: Jar) {
   from sourceSets.main.output
 }
@@ -101,6 +109,8 @@ task sourceJar(type: Jar) {
 task classifierSourceJar(type: Jar) {
   from sourceSets.main.allJava
 }
+
+javadoc.failOnError = false
 
 def pomConfig = {
   scm {
@@ -126,6 +136,7 @@ publishing {
   publications {
     publication(MavenPublication) {
       from components.java
+      artifact javadocJar { classifier = "javadoc" }
       artifact classifierJar { classifier = "1.8" }
       artifact sourceJar { classifier = "sources" }
       artifact classifierSourceJar { classifier = "1.8-sources" }
@@ -145,9 +156,14 @@ publishing {
   }
 }
 
+def getPropOrSystemOrDefault(def propertyName, def systemPropertyName) {
+  def defaultValue = System.getenv("$systemPropertyName") ?: "not-present"
+  return project.hasProperty("$propertyName") ? project.property("$propertyName") : defaultValue
+}
+
 bintray {
-  user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-  key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+  user = getPropOrSystemOrDefault("bintrayUser", "BINTRAY_USER")
+  key = getPropOrSystemOrDefault("bintrayApiKey", "BINTRAY_API_KEY")
   publications = ["publication"]
   pkg {
     userOrg = user
@@ -176,3 +192,59 @@ clean.doFirst {
     delete "$projectDir/$it"
   }
 }
+
+/* maven cen/tral */
+artifacts {
+  archives javadocJar, classifierJar, sourceJar, classifierSourceJar
+}
+
+// avoid jitpack build fail
+// uncomment to publish build to maven central using command: `gradle uploadArchives`
+/*
+
+signing {
+  sign configurations.archives
+}
+
+def ossrhUsername = getPropOrSystemOrDefault("ossrhUsername", "ossrhUsername")
+def ossrhPassword = getPropOrSystemOrDefault("ossrhPassword", "ossrhPassword")
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+      pom.project {
+        name "$project.name"
+        packaging "jar"
+        // optionally artifactId can be defined here
+        description "$project.description"
+        url "https://github.com/daggerok/kotlin-html-dsl"
+        scm {
+          connection "scm:git:git://github.com/daggerok/kotlin-html-dsl.git"
+          developerConnection "scm:git:ssh://github.com:daggerok/kotlin-html-dsl.git"
+          url "https://github.com/daggerok/kotlin-html-dsl/tree/master"
+        }
+        licenses {
+          license {
+            name "MIT License"
+            url "http://www.opensource.org/licenses/mit-license.php"
+          }
+        }
+        developers {
+          developer {
+            id "daggerok"
+            name "Maksim Kostromin"
+            email "daggerok@gmail.com"
+          }
+        }
+      }
+    }
+  }
+}
+*/

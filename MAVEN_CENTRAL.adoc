@@ -1,0 +1,132 @@
+= maven central
+
+NOTE: JitPack build is failing because of gpg signing configuration.
+So we are commented out maven-central build config part in build.gradle
+
+== prepare
+
+[source,bash]
+----
+brew install gnupg@2.0
+
+gpg2 --gen-key
+#...
+
+gpg2 --list-keys
+/Users/mak/.gnupg/pubring.gpg
+-----------------------------
+pub   2048R/A5252B5B 2018-04-14
+uid       [ultimate] Maksim Kostromin (daggerok) <daggerok@gmail.com>
+sub   2048R/7D692BAD 2018-04-14
+
+gpg2 --list-secret-keys
+/Users/mak/.gnupg/secring.gpg
+-----------------------------
+sec   2048R/A5252B5B 2018-04-14
+uid                  Maksim Kostromin (daggerok) <daggerok@gmail.com>
+ssb   2048R/7D692BAD 2018-04-14
+
+# test key
+gpg2 -ab build/libs/kotlin-html-dsl-1.0.0.jar
+
+# distributing public key
+gpg2 --keyserver hkp://pool.sks-keyservers.net --send-keys A5252B5B
+# output: gpg: sending key A5252B5B to hkp server pool.sks-keyservers.net
+----
+
+== gradle
+
+.edit ./gradle.properties
+[source,properties]
+----
+ossrhUsername=daggerok
+ossrhPassword=....
+
+signing.keyId=A5252B5B
+
+signing.password=...
+signing.secretKeyRingFile=/Users/mak/.gnupg/secring.gpg
+----
+
+.edit ./build.gradle
+[source,gradle]
+----
+plugins {
+  id "maven"
+  id "signing"
+  // ...
+}
+// ...
+apply plugin: "maven-publish"
+
+task javadocJar(type: Jar) {
+  classifier = "javadoc"
+  from javadoc
+}
+
+javadoc.failOnError = false
+// ...
+artifacts {
+  archives javadocJar, // ...
+}
+
+signing {
+  sign configurations.archives
+}
+
+def ossrhUsername = getPropOrSystemOrDefault("ossrhUsername", "ossrhUsername")
+def ossrhPassword = getPropOrSystemOrDefault("ossrhPassword", "ossrhPassword")
+
+//// where:
+//def getPropOrSystemOrDefault(def propertyName, def systemPropertyName) {
+//  def defaultValue = System.getenv("$systemPropertyName") ?: "not-present"
+//  return project.hasProperty("$propertyName") ? project.property("$propertyName") : defaultValue
+//}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+      pom.project {
+        name "$project.name"
+        packaging "jar"
+        // optionally artifactId can be defined here
+        description "$project.description"
+        url "https://github.com/daggerok/kotlin-html-dsl"
+        scm {
+          connection "scm:git:git://github.com/daggerok/kotlin-html-dsl.git"
+          developerConnection "scm:git:ssh://github.com:daggerok/kotlin-html-dsl.git"
+          url "https://github.com/daggerok/kotlin-html-dsl/tree/master"
+        }
+        licenses {
+          license {
+            name "MIT License"
+            url "http://www.opensource.org/licenses/mit-license.php"
+          }
+        }
+        developers {
+          developer {
+            id "daggerok"
+            name "Maksim Kostromin"
+            email "daggerok@gmail.com"
+          }
+        }
+      }
+    }
+  }
+}
+----
+
+.publish to maven central
+[source,bash]
+----
+gradle uploadArchives
+----
+
+== maven (TODO: failed on gpg...)
